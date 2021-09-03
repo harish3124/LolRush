@@ -1,0 +1,21 @@
+set fish_greeting ""
+
+#neofetch | lolcat
+
+#colorscript random
+
+# Start X at login
+if status is-login
+    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+        exec startx -- -keeptty
+    end
+end
+
+starship init fish | source
+
+export RUST_BACKTRACE=1
+export RUST_BACKTRACE=full
+
+export GOPATH=$HOME/.go
+
+export EDITOR=nvim

@@ -1,3 +1,9 @@
+#[macro_use]
+extern crate clap;
+
+mod cli;
+
 fn main() {
-    println!("Hello, world!");
+    let contents = cli::get_input();
+    println!("{:?}", contents);
 }
