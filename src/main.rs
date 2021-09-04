@@ -1,9 +1,11 @@
-#[macro_use]
-extern crate clap;
-
-mod cli;
+use lolcat_rs::*;
 
 fn main() {
-    let contents = cli::get_input();
-    println!("{:?}", contents);
+    let input = get_args();
+
+    match input.value_of("INPUT") {
+        Some(file_name) => read_file(file_name),
+        None => read_stdin(),
+    };
 }
+
