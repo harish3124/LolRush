@@ -1,4 +1,5 @@
-TODO: Read From Stdin
 TODO: Print to Stdout as in cat
+TODO: Setup Coloring
 DONE: Setup Clap-rs
 DONE: Read From File
+DONE: Read From Stdin

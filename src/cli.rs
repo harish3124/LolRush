@@ -8,14 +8,21 @@ fn get_args<'a>() -> ArgMatches<'a> {
         (version: "1.0")
         (author: "Harish <harishg3124@gmail.com>")
         (about: "An high performance rewrite of lolcat")
-        (@arg INPUT: +required "Sets the input file to use")
+        (@arg INPUT: "Sets the input file to use")
     )
     .get_matches();
     return matches;
 }
 
 fn read_stdin() -> Vec<String> {
-    vec![String::from("Test")]
+    let mut contents: Vec<String> = vec![];
+    let stdin = io::stdin();
+    for line in stdin.lock().lines() {
+        println!("{}", line.as_ref().unwrap());
+        contents.push(line.unwrap());
+    };
+
+    contents
 }
 
 fn read_file(file_name: &str) -> Vec<String> {
