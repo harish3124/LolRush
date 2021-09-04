@@ -27,8 +27,7 @@ pub fn read_stdin(){
 
 pub fn read_file(file_name: &str) {
     let file_path = Path::new(file_name);
-    let file = File::open(file_path).expect("Can't open file !");
-
+    let file = File::open(file_path).expect("Unable to open file !");
     let reader = BufReader::new(file);
 
     for line in reader.lines() {
