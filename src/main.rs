@@ -8,4 +8,3 @@ fn main() {
         None => read_stdin(),
     };
 }
-
