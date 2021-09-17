@@ -7,6 +7,3 @@ pub use cli::*;
 
 mod gradline;
 use gradline::GradLine;
-
-mod colorize;
-use colorize::colorize;

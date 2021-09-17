@@ -4,12 +4,12 @@ use std::fs::File;
 use std::io::{self, prelude::*, BufReader};
 use std::path::Path;
 
-use crate::{colorize, GradLine};
+use crate::{GradLine};
 
 pub fn get_args<'a>() -> ArgMatches<'a> {
     let matches = clap_app!(lolcat_rs =>
         (version: "1.0")
-        (author: "Harish <harishg3124@gmail.com>")
+        (author: "Harish <github.com/harish3124>")
         (about: "An high performance rewrite of lolcat")
         (@arg INPUT: "Sets the input file to use")
     )
@@ -22,8 +22,7 @@ pub fn read_stdin() {
     let mut line = GradLine::new();
 
     for current_line in stdin.lock().lines() {
-        line.line = current_line.unwrap();
-        colorize(&line);
+        line.print(current_line.unwrap());
     }
 }
 
@@ -35,7 +34,6 @@ pub fn read_file(file_name: &str) {
     let mut line = GradLine::new();
 
     for current_line in reader.lines() {
-        line.line = current_line.unwrap();
-        colorize(&line);
+        line.print(current_line.unwrap());
     }
 }
