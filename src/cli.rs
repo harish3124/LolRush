@@ -19,12 +19,10 @@ pub fn get_args<'a>() -> ArgMatches<'a> {
 
 pub fn read_stdin() {
     let stdin = io::stdin();
-    let mut line = GradLine::new("rainbow");
+    let mut line = GradLine::new();
 
-    let mut current: String;
     for current_line in stdin.lock().lines() {
-        current = current_line.unwrap();
-        line.line = &current;
+        line.line = current_line.unwrap();
         colorize(&line);
     }
 }
@@ -34,10 +32,10 @@ pub fn read_file(file_name: &str) {
     let file = File::open(file_path).expect("Unable to open file !");
     let reader = BufReader::new(file);
 
-    let mut line = GradLine::new("rainbow");
+    let mut line = GradLine::new();
 
     for current_line in reader.lines() {
-        line.line = &current_line.unwrap();
+        line.line = current_line.unwrap();
         colorize(&line);
     }
 }

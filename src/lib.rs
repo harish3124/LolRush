@@ -2,9 +2,8 @@
 extern crate clap;
 extern crate colorful;
 
-
 mod cli;
-pub use cli::get_args;
+pub use cli::*;
 
 mod gradline;
 use gradline::GradLine;

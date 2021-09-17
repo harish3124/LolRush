@@ -1,24 +1,21 @@
-use colorful::core::StrMarker;
-use colorgrad::Gradient;
+use colorgrad::{rainbow, Gradient};
 
-pub struct GradLine<'a> {
-    pub line: &'a String,
+pub struct GradLine {
+    pub line: String,
     gradient: Gradient,
     offset: u8,
 }
 
-impl GradLine<'_> {
-    pub fn new(gradient_name: &str) -> GradLine {
-        unimplemented!();
+impl GradLine {
+    pub fn new() -> GradLine {
+        GradLine {
+            line: String::new(),
+            gradient: rainbow(),
+            offset: 0,
+        }
     }
 
-    // pub fn set_line<'a>(&mut self, line: String) {
-    //     self.line = &line;
-    // }
-}
-
-impl StrMarker for GradLine<'_> {
-    fn to_str(&self) -> String {
-        String::from(self.line)
+    pub fn get_line(&self) -> &str {
+        &self.line[..]
     }
 }
