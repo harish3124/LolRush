@@ -4,7 +4,7 @@ use std::fs::File;
 use std::io::{self, prelude::*, BufReader};
 use std::path::Path;
 
-use crate::GradLine;
+use crate::{GradLine, strip_chars};
 
 pub fn get_args<'a>() -> ArgMatches<'a> {
     let matches = clap_app!(lolcat_rs =>
@@ -22,7 +22,8 @@ pub fn read_stdin() {
     let mut line = GradLine::new();
 
     for current_line in stdin.lock().lines() {
-        line.print(current_line.unwrap());
+        let current_line = strip_chars(current_line.as_ref().unwrap());
+        line.print(current_line.to_string());
     }
 }
 
@@ -34,6 +35,7 @@ pub fn read_file(file_name: &str) {
     let mut line = GradLine::new();
 
     for current_line in reader.lines() {
-        line.print(current_line.unwrap());
+        let current_line = strip_chars(current_line.as_ref().unwrap());
+        line.print(current_line.to_string());
     }
 }
