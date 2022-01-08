@@ -1,4 +1,5 @@
-use colorful::{Colorful, RGB};
+// use colorful::{Colorful, RGB};
+use colored::*;
 use colorgrad::{rainbow, Gradient};
 use rand::random;
 
@@ -19,24 +20,25 @@ impl GradLine {
         }
     }
 
-    pub fn print(&mut self, current_line: String) {
-        self.line = current_line;
-        let mut grad = self.gradient.at(self.offset).rgba_u8();
-
+    fn colorize(&mut self, current_line: &String) -> String {
+        self.line = current_line.to_string();
         self.offset = self.line_offset;
 
+        let mut grad;
+
+        let mut colored_string = String::from("");
+
         for alpha in self.line.split("") {
-            print!("{}", alpha.color(RGB::new(grad.0, grad.1, grad.2)));
+            grad = self.gradient.at(self.offset).rgba_u8();
+
+            colored_string += &alpha.truecolor(grad.0, grad.1, grad.2);
 
             if self.offset <= 1.0 && self.offset >= 0.0 {
                 self.offset += 0.01;
             } else {
                 self.offset = 0.0;
             };
-
-            grad = self.gradient.at(self.offset).rgba_u8();
         }
-        println!("");
 
         if self.line_offset <= 1.0 && self.line_offset >= 0.0 {
             self.line_offset += 0.01;
@@ -44,11 +46,11 @@ impl GradLine {
             self.line_offset = 0.0;
         };
 
-        // println!(
-        //     "{}",
-        //     self.line[..]
-        //         .color(RGB::new(grad.0, grad.1, grad.2))
+        colored_string
+    }
 
-        // );
+    pub fn print(&mut self, current_line: String) {
+        let colored_string = self.colorize(&current_line);
+        println!("{}", &colored_string);
     }
 }
