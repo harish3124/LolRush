@@ -5,9 +5,8 @@ version = "0.3.0"
 edition = "2018"
 
 [dependencies]
-# colorful = "0.2.1"
-# strip-ansi-escapes = "0.1"
 colored = "2"
 colorgrad = "0.5.0"
 clap = "2"
 rand = "0.8"
+unicode-segmentation = "1.8.0"
