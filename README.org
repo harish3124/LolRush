@@ -1,0 +1,8 @@
+* LolRush
+
+An simple rewrite of [[https://github.com/busyloop/lolcat][Lolcat]] in rust !
+
+[[./screenshot.jpg]]
+
+** Credits
++ [[https://github.com/davidkna/lcat-rs][Lcat-rs]]

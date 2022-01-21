@@ -26,7 +26,22 @@ impl GradLine {
 
         let grapheme_vec = self.split_grapheme();
 
+        let mut escaping = false;
+
         for grapheme in grapheme_vec {
+            if grapheme == "\x1B" {
+                print!("\x1B");
+                escaping = true;
+                continue;
+            } else if escaping {
+                print!("{}", grapheme);
+
+                escaping = grapheme.len() != 1 || {
+                    let c = grapheme.as_bytes()[0];
+                    !(b'a'..=b'z').contains(&c) && !(b'A'..=b'Z').contains(&c)
+                };
+                continue;
+            }
             grad = self.gradient.at(offset).rgba_u8();
 
             print!("{}", grapheme.truecolor(grad.0, grad.1, grad.2));
