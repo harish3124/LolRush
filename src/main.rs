@@ -1,4 +1,4 @@
-use lolcat_rs::*;
+use lol_rush::*;
 
 fn main() {
     let input = get_args();
